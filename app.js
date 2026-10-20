@@ -7,7 +7,7 @@ const works=[
 {title:"大众点评笔试",sub:"附近页体验设计",type:"PRODUCT EXPERIENCE",cover:"cover-6.png",file:"project-6.pdf",desc:"以附近场景为核心，探索信息密度、内容发现与地图决策之间的平衡。",year:"2026.10"},
 {title:"闲鱼运营设计",sub:"毕业季集卡活动营销设计",type:"VISUAL OPERATION",cover:"cover-7.png",file:"project-7.pdf",desc:"围绕毕业季情绪与活动机制，完成主题视觉、活动页面与运营物料设计。",year:"2025.08"},
 {title:"汽水音乐笔试",sub:"听歌时长成就动效设计",type:"MOTION & UI",cover:"cover-8.png",file:"project-8.pdf",desc:"为听歌成就建立具有音乐感的动效表达，让数据反馈更有节奏与情绪。",year:"2026.06"}];
-const asset=p=>`assets/${p}`, pdf=p=>`assets/${p}`;
+const asset=p=>`assets/${p}`, pdf=p=>`https://temporary-fast-ridge-greufsx.vercel.app/assets/pdfs/${encodeURIComponent(p)}`;
 const wall=document.querySelector("#hero-wall");
 if(wall) wall.innerHTML=works.map((w,i)=>`<a class="wall-card wall-card-${i+1}" href="detail.html?id=${i}" aria-label="浏览${w.title}作品内容"><img src="${asset("covers/"+w.cover)}?v=3" alt="${w.title}作品封面"><span class="wall-tooltip">${w.title}</span></a>`).join("");
 if(document.body.classList.contains("detail-body")){const w=works[Number(new URLSearchParams(location.search).get("id"))||0],i=works.indexOf(w);document.title=`${w.title} · 王毓馨作品集`;document.querySelector("#detail-kicker").textContent=`${String(i+1).padStart(2,"0")} / 08`;document.querySelector("#detail-tag").textContent=w.type;document.querySelector("#detail-title").textContent=w.title;document.querySelector("#detail-sub").textContent=w.sub;document.querySelector("#detail-desc").textContent=w.desc;document.querySelector("#detail-year").textContent=w.year;document.querySelector("#pdf-frame").src=pdf(w.file)+"#toolbar=0&navpanes=0&scrollbar=1";document.querySelector("#next-link").href=`detail.html?id=${(i+1)%works.length}`;}
